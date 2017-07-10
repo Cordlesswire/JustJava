@@ -3,5 +3,9 @@
 
 
     <!-- Basic Texts in App -->
-    <string name="app_name">Just Java</string>
+    <string name="hint_text">Enter Name</string>
+    <string name="toppings_text">Toppings</string>
+    <string name="whippedCream_text">Whipped Cream</string>
+    <string name="chocolate_text">Chocolate</string>
+    <string name="quantity_text">Quantity</string>
 </resources>
