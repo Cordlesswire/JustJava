@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * This app is a Coffee Ordering App i.e. displays a form to order coffee.
@@ -17,6 +16,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
+    private String addedwhippedCream = " No ";
+    private String addedChocolate = " No ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +72,11 @@ public class MainActivity extends AppCompatActivity {
         String theName = nameInput.getText().toString();
 
         int price = calculatePrice(hasWhippedCream, hasChocolate);
-        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, theName);
+        String priceMessage = createOrderSummary(price, theName);
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));   //only email apps should handle this
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + theName);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for: " + theName);
         intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
@@ -96,10 +97,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Add R1 if the user wants whipped cream
         if (addWhippedCream) {
+            addedwhippedCream = " Yes ";
             basePrice = basePrice + 1;
         }
         //Add R2 if the user wants chocolate
         if (addChocolate) {
+            addedChocolate =" Yes ";
             basePrice = basePrice + 2;
         }
         //Calculate the total order price by multiplying by quantity
@@ -111,16 +114,16 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Create summary of the order.
      * @param theName is the name entered in the input field
-     * @param hasWhippedCream is whether or not the user wants whipped cream topping
-     * @param hasChocolate is whether or not the user wants chocolate
+     //* @param hasWhippedCream is whether or not the user wants whipped cream topping
+     //* @param hasChocolate is whether or not the user wants chocolate
      * @param price of the order
      * @return text summary
      */
-    private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate, String theName) {
+    private String createOrderSummary(int price, String theName) {
 
         String priceMessage = "Name: " + theName;
-        priceMessage += "\nAdd whipped cream? " + hasWhippedCream;
-        priceMessage += "\nAdd chocolate? " + hasChocolate;
+        priceMessage += "\nAdded whipped cream? " + addedwhippedCream;
+        priceMessage += "\nAdded chocolate? " + addedChocolate;
         priceMessage += "\nQuantity " + quantity;
         priceMessage += "\nTotal: R " + price + "\n";
         priceMessage += "\nThank you!";
