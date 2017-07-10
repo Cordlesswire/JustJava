@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This app displays an order form to order coffee.
+ * This app is a Coffee Ordering App i.e. displays a form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayQuantity(int allNumbers) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + allNumbers);
+        quantityTextView.setText(" " + allNumbers);
     }
 
 
@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void increment(View view) {
         if (quantity == 100){
-            //Show an error message as a toast
-            Toast.makeText(this, "You can not order more than 100 coffees", Toast.LENGTH_SHORT).show();
-            //Exit this method early because there's nothing left to do
             return;
         }
 
@@ -51,17 +48,13 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the - button is clicked.
      */
     public void decrement(View view) {
-        if (quantity == 1){
-            //Show an error message as a toast
-            Toast.makeText(this, "You can not order less than 1 coffee", Toast.LENGTH_SHORT).show();
-            //Exit this method early because there's nothing left to do
+        if (quantity == 0) {
             return;
         }
-
         quantity = quantity - 1;
         displayQuantity(quantity);
-
     }
+
 
     /**
      * This method is called when the order button is clicked.
@@ -98,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     private int calculatePrice(boolean addWhippedCream, boolean addChocolate) {
 
         //Price of 1 cup of coffee
-        int basePrice = 5;
+        int basePrice = 10;
 
         //Add $1 if the user wants whipped cream
         if (addWhippedCream) {
@@ -128,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         priceMessage += "\nAdd whipped cream? " + hasWhippedCream;
         priceMessage += "\nAdd chocolate? " + hasChocolate;
         priceMessage += "\nQuantity " + quantity;
-        priceMessage += "\nTotal: $" + price;
+        priceMessage += "\nTotal: R " + price;
         priceMessage += "\nThank you!";
         return priceMessage;
 
