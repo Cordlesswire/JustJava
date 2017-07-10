@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice(hasWhippedCream, hasChocolate);
         String priceMessage = createOrderSummary(price, theName);
 
+
+        //Intent to Display Order Information in Email App
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));   //only email apps should handle this
         intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for: " + theName);
@@ -122,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
     private String createOrderSummary(int price, String theName) {
 
         String priceMessage = "Name: " + theName;
+        //Display "Yes" or "No" Depending whether the user Added Whipped Cream or Chocolate to their coffee more User friendly than true/false
         priceMessage += "\nAdded whipped cream? " + addedwhippedCream;
         priceMessage += "\nAdded chocolate? " + addedChocolate;
         priceMessage += "\nQuantity " + quantity;
