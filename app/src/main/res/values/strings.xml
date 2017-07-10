@@ -11,6 +11,6 @@
     <string name="subtract_text"> - </string>
     <string name="zero_text"> 0 </string>
     <string name="addition_text"> + </string>
-    <string name="order_text">Order</string>
+    <string name="order_text"> Order </string>
 
 </resources>
