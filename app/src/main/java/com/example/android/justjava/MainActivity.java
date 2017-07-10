@@ -1,6 +1,7 @@
 package com.example.android.justjava;
 
 import android.content.Intent;
+import android.icu.text.NumberFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -93,11 +94,11 @@ public class MainActivity extends AppCompatActivity {
         //Price of 1 cup of coffee
         int basePrice = 10;
 
-        //Add $1 if the user wants whipped cream
+        //Add R1 if the user wants whipped cream
         if (addWhippedCream) {
             basePrice = basePrice + 1;
         }
-        //Add $2 if the user wants chocolate
+        //Add R2 if the user wants chocolate
         if (addChocolate) {
             basePrice = basePrice + 2;
         }
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         priceMessage += "\nAdd whipped cream? " + hasWhippedCream;
         priceMessage += "\nAdd chocolate? " + hasChocolate;
         priceMessage += "\nQuantity " + quantity;
-        priceMessage += "\nTotal: R " + price;
+        priceMessage += "\nTotal: R " + price + "\n";
         priceMessage += "\nThank you!";
         return priceMessage;
 
